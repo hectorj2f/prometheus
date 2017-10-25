@@ -38,7 +38,8 @@ $ dcos config show core.dcos_acs_token
 abc1234...
 ```
 
-Provide an `options.json` file.
+### Install ###
+Create an `options.json` file.
 ```bash
 $ cat options.json
 {
@@ -46,6 +47,9 @@ $ cat options.json
     "auth-token": "abc123..."
   }
 }
+```
+Install with the `options.json` file.
+```bash
 $ dcos package install --yes prometheus --options=options.json
 ...
 ```
