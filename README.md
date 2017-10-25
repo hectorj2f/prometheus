@@ -32,13 +32,15 @@ dcos package install --yes prometheus
 $ dcos package repo remove prometheus-aws
 $ dcos package repo add --index=0 prometheus-aws https://universe-converter.mesosphere.com/transform?url=https://infinity-artifacts.s3.amazonaws.com/autodelete7d/prometheus/20171025-152355-V5PMXIcE5jSlRSM7/stub-universe-prometheus.json
 ```
+
+### Install ###
+
 In order to enable collection of metrics from the `dcos-metrics` service an ACS token must be provided.
 ```bash
 $ dcos config show core.dcos_acs_token
 abc1234...
 ```
 
-### Install ###
 Create an `options.json` file.
 ```bash
 $ cat options.json
@@ -53,3 +55,8 @@ Install with the `options.json` file.
 $ dcos package install --yes prometheus --options=options.json
 ...
 ```
+
+### Access Grafana ###
+Grafana will be installed on a public agent.  Go find that agent's public ip address.  Grafana will be present at `<public_ip>:3000`.
+
+By default the username and password is `admin:admin`.
