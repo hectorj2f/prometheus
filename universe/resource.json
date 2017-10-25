@@ -1,0 +1,50 @@
+{
+  "assets": {
+    "container": {
+      "docker": {
+        "master-exporter": "mesosphere/mesos_exporter",
+        "marathon-exporter": "gabrielhartmann/marathon_exporter:0.0.4"
+      }
+    },
+    "uris": {
+      "jre-tar-gz": "{{jre-url}}",
+      "libmesos-bundle-tar-gz": "{{libmesos-bundle-url}}",
+      "scheduler-zip": "{{artifact-dir}}/prometheus-scheduler.zip",
+      "bootstrap-zip": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.30.1/bootstrap.zip",
+      "executor-zip": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.30.1/executor.zip",
+      "grafana-tar-gz": "https://s3-us-west-1.amazonaws.com/gabrielbackup/grafana-2.5.0.linux-x64.tar.gz",
+      "dcos-exporter": "https://s3-us-west-1.amazonaws.com/gabrielbackup/exporter",
+      "prometheus-tar-gz": "https://s3-us-west-1.amazonaws.com/gabrielbackup/prometheus-1.8.0.linux-amd64.tar.gz"
+    }
+  },
+  "images": {
+    "icon-small": "https://github.com/dcos/dcos-ui/blob/master/plugins/services/src/img/icon-service-default-small.png?raw=true",
+    "icon-medium": "https://github.com/dcos/dcos-ui/blob/master/plugins/services/src/img/icon-service-default-medium.png?raw=true",
+    "icon-large": "https://github.com/dcos/dcos-ui/blob/master/plugins/services/src/img/icon-service-default-large.png?raw=true"
+  },
+  "cli": {
+    "binaries": {
+      "darwin": {
+        "x86-64": {
+          "contentHash": [ { "algo":"sha256", "value":"{{sha256:dcos-service-cli-darwin}}" } ],
+          "kind": "executable",
+          "url": "{{artifact-dir}}/dcos-service-cli-darwin"
+        }
+      },
+      "linux": {
+        "x86-64": {
+          "contentHash": [ { "algo":"sha256", "value":"{{sha256:dcos-service-cli-linux}}" } ],
+          "kind": "executable",
+          "url": "{{artifact-dir}}/dcos-service-cli-linux"
+        }
+      },
+      "windows": {
+        "x86-64": {
+          "contentHash": [ { "algo":"sha256", "value":"{{sha256:dcos-service-cli.exe}}" } ],
+          "kind": "executable",
+          "url": "{{artifact-dir}}/dcos-service-cli.exe"
+        }
+      }
+    }
+  }
+}

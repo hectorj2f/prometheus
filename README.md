@@ -1,1 +1,3 @@
-# prometheus
+```
+./build.sh aws
+```

@@ -1,0 +1,128 @@
+{
+  "type": "object",
+    "properties": {
+      "master": {
+        "description": "Master collector configuration properties",
+        "type": "object",
+        "properties": {
+          "count": {
+            "description": "Number of master collectors to run",
+            "type": "integer",
+            "default": 1
+          },
+          "cpus": {
+            "description": "Master pod CPU requirements",
+            "type": "number",
+            "default": 0.5
+          },
+          "mem": {
+            "description": "Master pod mem requirements (in MB)",
+            "type": "integer",
+            "default": 512
+          },
+          "image": {
+            "description": "The mesos_exporter Docker image",
+            "type": "string",
+            "default": "gabrielhartmann/mesos_exporter:0.0.5"
+          },
+          "address": {
+            "description": "Master address",
+            "type": "string",
+            "default": "http://leader.mesos:5050"
+          }
+        },
+        "required": [
+          "count",
+          "cpus",
+          "mem"
+        ]
+      },
+      "prometheus": {
+        "description": "Prometheus configuration properties",
+        "type": "object",
+        "properties": {
+          "cpus": {
+            "description": "Prometheus pod CPU requirements",
+            "type": "number",
+            "default": 2.0
+          },
+          "mem": {
+            "description": "Prometheus pod mem requirements (in MB)",
+            "type": "integer",
+            "default": 4096
+          },
+          "interval": {
+            "description": "Master scrape interval",
+            "type": "number",
+            "default": 30
+          },
+          "timeout": {
+            "description": "Master scrape timeout",
+            "type": "number",
+            "default": 25
+          }
+        },
+        "required": [
+          "cpus",
+          "mem"
+        ]
+      },
+      "grafana": {
+        "description": "Grafana configuration properties",
+        "type": "object",
+        "properties": {
+          "cpus": {
+            "description": "Grafana pod CPU requirements",
+            "type": "number",
+            "default": 2.0
+          },
+          "mem": {
+            "description": "Grafana pod mem requirements (in MB)",
+            "type": "integer",
+            "default": 4096
+          }
+        },
+        "required": [
+          "cpus",
+          "mem"
+        ]
+      },
+      "service": {
+        "type": "object",
+        "description": "DC/OS service configuration properties",
+        "properties": {
+          "name": {
+            "description": "The name of the service instance",
+            "type": "string",
+            "default": "prometheus"
+          },
+          "service_account_secret": {
+            "description": "Name of the Secret Store credentials to use for DC/OS service authentication. This should be left empty unless service authentication is needed.",
+            "type": "string",
+            "default": ""
+          },
+          "user": {
+            "description": "The user that the service will run as.",
+            "type": "string",
+            "default": "root"
+          },
+          "service_account": {
+            "description": "The service account for DC/OS service authentication. This is typically left empty to use the default unless service authentication is needed. The value given here is passed as the principal of the Mesos framework.",
+            "type": "string",
+            "default": ""
+          },
+          "log_level": {
+            "description": "The log level for the DC/OS service.",
+            "type": "string",
+            "enum": ["OFF", "FATAL", "ERROR", "WARN", "INFO", "DEBUG", "TRACE", "ALL"],
+            "default": "INFO"
+          },
+          "auth-token": {
+            "description": "Auth token",
+            "type": "string",
+            "default": ""
+          }
+        }
+      }
+    }
+}
