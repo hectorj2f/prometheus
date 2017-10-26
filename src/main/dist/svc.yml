@@ -25,12 +25,11 @@ pods:
       exporter:
         goal: RUNNING
         cmd: >
-          chmod +x exporter && ./exporter \
+          chmod +x dcos_exporter && ./dcos_exporter \
             --listen-port=9090 \
             --listen-host=0.0.0.0 \
             --importer-interval={{SCRAPE_INTERVAL}}s \
-            --iam-config="" \
-            > $MESOS_SANDBOX/exporter.log 2>&1
+            --iam-config=""
         cpus: 0.3
         memory: 256
         volume:
@@ -88,3 +87,31 @@ pods:
             port: 3000
             env-key: GRAFANA_PORT
             advertise: true
+        readiness-check:
+          cmd: |
+                  curl -f http://admin:admin@grafana-0-server.prometheus.mesos:3000/api/admin/settings
+          interval: 5
+          delay: 0
+          timeout: 60
+      add-data-sources:
+        goal: FINISHED
+        cpus: 0.1
+        memory: 32
+        cmd: |
+                curl -H "Content-Type: application/json" -X POST -d '{"name":"prometheus","type":"prometheus","url":"http://prometheus-0-server.prometheus.mesos:9090","access":"proxy","basicAuth":false, "isDefault":true}' http://admin:admin@grafana-0-server.prometheus.mesos:3000/api/datasources
+
+plans:
+  deploy:
+    phases:
+      prometheus:
+        pod: prometheus
+      master:
+        pod: master
+      dcos:
+        pod: dcos
+      grafana:
+        pod: grafana
+        steps:
+          - default: [[server], [add-data-sources]]
+
+
