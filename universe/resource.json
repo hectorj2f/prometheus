@@ -13,7 +13,7 @@
       "bootstrap-zip": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.30.1/bootstrap.zip",
       "executor-zip": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.30.1/executor.zip",
       "grafana-tar-gz": "https://s3-us-west-1.amazonaws.com/gabrielbackup/grafana-2.5.0.linux-x64.tar.gz",
-      "dcos-exporter": "https://s3-us-west-1.amazonaws.com/gabrielbackup/exporter",
+      "dcos-exporter": "https://s3-us-west-1.amazonaws.com/gabrielbackup/dcos_exporter",
       "prometheus-tar-gz": "https://s3-us-west-1.amazonaws.com/gabrielbackup/prometheus-1.8.0.linux-amd64.tar.gz"
     }
   },
