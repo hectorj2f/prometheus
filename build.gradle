@@ -5,6 +5,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 
 repositories {
+    jcenter()
     mavenLocal()
     mavenCentral()
     maven {
@@ -22,9 +23,9 @@ ext {
 }
 
 dependencies {
-    compile "mesosphere:scheduler:metrics"
-    compile "mesosphere:executor:metrics"
-    testCompile "mesosphere:testing:metrics"
+    compile "mesosphere:scheduler:0.31.0-SNAPSHOT"
+    compile "mesosphere:executor:0.31.0-SNAPSHOT"
+    testCompile "mesosphere:testing:0.31.0-SNAPSHOT"
 }
 
 distributions {
