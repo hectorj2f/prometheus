@@ -23,9 +23,9 @@ ext {
 }
 
 dependencies {
-    compile "mesosphere:scheduler:0.31.0-SNAPSHOT"
-    compile "mesosphere:executor:0.31.0-SNAPSHOT"
-    testCompile "mesosphere:testing:0.31.0-SNAPSHOT"
+    compile "mesosphere:scheduler:0.40.3"
+    compile "mesosphere:executor:0.40.3"
+    testCompile "mesosphere:testing:0.40.3"
 }
 
 distributions {
