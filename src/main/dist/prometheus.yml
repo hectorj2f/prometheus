@@ -29,5 +29,4 @@ scrape_configs:
     scrape_interval: {{SCRAPE_INTERVAL}}s
     scrape_timeout: {{SCRAPE_TIMEOUT}}s
     static_configs:
-    - targets:
-      - dcos-0-exporter.prometheus.mesos:9090
+      - targets: ['10.0.0.12:9273', '10.0.7.75:9273', '10.0.1.114:9273']
