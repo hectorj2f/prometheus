@@ -16,31 +16,6 @@ pods:
           collector:
             port: 9105
             env-key: EXPORTER_PORT
-  dcos:
-    count: 1
-    uris:
-      - {{BOOTSTRAP_URI}}
-      - {{DCOS_EXPORTER_URI}}
-    tasks:
-      exporter:
-        goal: RUNNING
-        cmd: >
-          chmod +x dcos_exporter && ./dcos_exporter \
-            --listen-port=9090 \
-            --listen-host=0.0.0.0 \
-            --importer-interval={{SCRAPE_INTERVAL}}s \
-            --iam-config=""
-        cpus: 0.3
-        memory: 256
-        volume:
-          path: "exporter-data"
-          type: ROOT
-          size: 1024
-        ports:
-          exporter:
-            port: 9090
-        env:
-          AUTH_TOKEN: {{EXPORTER_AUTH_TOKEN}}
   prometheus:
     count: 1
     uris:
@@ -79,7 +54,7 @@ pods:
     tasks:
       server:
         goal: RUNNING
-        cmd: cd grafana-2.5.0 && bin/grafana-server web
+        cmd: cd grafana-5.0.1 && bin/grafana-server web
         cpus: {{GRAFANA_CPUS}}
         memory: {{GRAFANA_MEM}}
         ports:
@@ -107,8 +82,6 @@ plans:
         pod: prometheus
       master:
         pod: master
-      dcos:
-        pod: dcos
       grafana:
         pod: grafana
         steps:
