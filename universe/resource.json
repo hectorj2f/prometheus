@@ -10,8 +10,8 @@
       "jre-tar-gz": "{{jre-url}}",
       "libmesos-bundle-tar-gz": "{{libmesos-bundle-url}}",
       "scheduler-zip": "{{artifact-dir}}/prometheus-scheduler.zip",
-      "bootstrap-zip": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.30.1/bootstrap.zip",
-      "executor-zip": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.30.1/executor.zip",
+      "bootstrap-zip": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.40.5/bootstrap.zip",
+      "executor-zip": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.40.5/executor.zip",
       "grafana-tar-gz": "https://s3-us-west-1.amazonaws.com/gabrielbackup/grafana-5.0.1.linux-x64.tar.gz",
       "prometheus-tar-gz": "https://downloads.mesosphere.com/prometheus/assets/1.8.0/prometheus-1.8.0.linux-amd64.tar.gz"
     }
