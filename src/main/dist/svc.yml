@@ -51,29 +51,34 @@ pods:
     count: 1
     uris:
       - {{GRAFANA_URI}}
+      - {{BOOTSTRAP_URI}}
     tasks:
       server:
         goal: RUNNING
-        cmd: cd grafana-5.0.1 && bin/grafana-server web
+        cmd: ./bootstrap --resolve=false && cd grafana-5.0.1 && bin/grafana-server web
         cpus: {{GRAFANA_CPUS}}
         memory: {{GRAFANA_MEM}}
         ports:
           grafana:
-            port: 3000
+            port: {{GRAFANA_PORT}}
             env-key: GRAFANA_PORT
             advertise: true
         readiness-check:
           cmd: |
-                  curl -f http://admin:admin@grafana-0-server.prometheus.mesos:3000/api/admin/settings
+                  curl -f http://admin:admin@grafana-0-server.prometheus.mesos:{{GRAFANA_PORT}}/api/admin/settings
           interval: 5
           delay: 0
           timeout: 60
+        configs:
+          defaults:
+            template: defaults.ini
+            dest: grafana-5.0.1/conf/defaults.ini
       add-data-sources:
         goal: FINISHED
         cpus: 0.1
         memory: 32
         cmd: |
-                curl -H "Content-Type: application/json" -X POST -d '{"name":"prometheus","type":"prometheus","url":"http://prometheus-0-server.prometheus.mesos:9090","access":"proxy","basicAuth":false, "isDefault":true}' http://admin:admin@grafana-0-server.prometheus.mesos:3000/api/datasources
+                curl -H "Content-Type: application/json" -X POST -d '{"name":"prometheus","type":"prometheus","url":"http://prometheus-0-server.prometheus.mesos:9090","access":"proxy","basicAuth":false, "isDefault":true}' http://admin:admin@grafana-0-server.prometheus.mesos:{{GRAFANA_PORT}}/api/datasources
 
 plans:
   deploy:
